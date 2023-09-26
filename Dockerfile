@@ -7,6 +7,6 @@ COPY . .
 
 RUN yarn install
 
-EXPOSE 8080
+EXPOSE 5000
 
-CMD [ "node", "src/index.js" ]
+CMD [ "npm", "start" ]
