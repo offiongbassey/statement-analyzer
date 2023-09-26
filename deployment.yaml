@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: statmentanalyzer
+  labels:
+    app: statmentanalyzer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: statmentanalyzer
+  template:
+    metadata:
+      labels:
+        app: statmentanalyzer
+    spec:
+      containers:
+      - name: statmentanalyzer
+        image: 307549371794.dkr.ecr.eu-north-1.amazonaws.com/statementanalyzer:1.1
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
