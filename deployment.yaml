@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: statmentanalyzer
-        image: 307549371794.dkr.ecr.eu-north-1.amazonaws.com/statementanalyzer:1.1
+        image: 307549371794.dkr.ecr.eu-north-1.amazonaws.com/statementanalyzer:latest
         imagePullPolicy: Always
         resources:
           limits:
