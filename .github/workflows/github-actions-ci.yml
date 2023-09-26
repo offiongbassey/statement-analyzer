@@ -20,7 +20,7 @@ jobs:
       id: install
 
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -34,7 +34,7 @@ jobs:
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REPOSITORY: statmentanalyzer
-        IMAGE_TAG: 1.1
+        IMAGE_TAG: latest
       run:  |
         docker build -t 307549371794.dkr.ecr.eu-north-1.amazonaws.com/statementanalyzer:latest .
         docker push 307549371794.dkr.ecr.eu-north-1.amazonaws.com/statementanalyzer:latest
