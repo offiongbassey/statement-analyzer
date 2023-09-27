@@ -6,6 +6,10 @@ on:
   pull_request: 
     branches: [ master ]
 
+env:
+
+  AWS_REGION: <"us-east-1">
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,9 +26,9 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
+        role-to-assume: <arn:aws:iam::307549371794:role/GitHubAction-AssumeRoleWithAction> #change to reflect your IAM role’s ARN
+        role-session-name: GitHub_to_AWS_via_FederatedOIDC
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -36,8 +40,8 @@ jobs:
         REPOSITORY: statmentanalyzer
         IMAGE_TAG: latest
       run:  |
-        docker build -t 307549371794.dkr.ecr.us-east-1.amazonaws.com/statementanalyzer:latest .
-        docker push 307549371794.dkr.ecr.us-east-1.amazonaws.com/statementanalyzer:latest
+        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
     
     - name: Update kube config
       run: aws eks update-kubeconfig --name statmentanalyzer
