@@ -36,8 +36,8 @@ jobs:
         REPOSITORY: statmentanalyzer
         IMAGE_TAG: latest
       run:  |
-        docker build -t 307549371794.dkr.ecr.eu-east-1.amazonaws.com/statementanalyzer:latest .
-        docker push 307549371794.dkr.ecr.eu-east-1.amazonaws.com/statementanalyzer:latest
+        docker build -t 307549371794.dkr.ecr.us-east-1.amazonaws.com/statementanalyzer:latest .
+        docker push 307549371794.dkr.ecr.us-east-1.amazonaws.com/statementanalyzer:latest
     
     - name: Update kube config
       run: aws eks update-kubeconfig --name statmentanalyzer
