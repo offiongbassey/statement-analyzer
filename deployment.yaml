@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: statmentanalyzer
+  name: statementanalyzer
   labels:
-    app: statmentanalyzer
+    app: statementanalyzer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: statmentanalyzer
+      app: statementanalyzer
   template:
     metadata:
       labels:
-        app: statmentanalyzer
+        app: statementanalyzer
     spec:
       containers:
-      - name: statmentanalyzer
+      - name: statementanalyzer
         image: 307549371794.dkr.ecr.us-east-2.amazonaws.com/statementanalyzer:latest
         imagePullPolicy: Always
         resources:
